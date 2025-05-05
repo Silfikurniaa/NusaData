@@ -4,7 +4,7 @@
 
 ---
 
- <p align="center"><a href="https://laravel.com" target="_blank"><img src="WhatsApp Image 2025-05-04 at 11.31.09 PM.jpeg" width="400" alt="Laravel Logo"></a></p>
+ <p align="center"><a href="https://laravel.com" target="_blank"><img src="WhatsApp Image 2025-05-04 at 11.31.09 PM.jpeg" width="400" alt="unsulbar Logo"></a></p>
 
 ## 👤 Disusun oleh
 
