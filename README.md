@@ -1,25 +1,23 @@
-# NusaData
+<div align="center">
 
-**Sistem Informasi Data Warga**
+_NusaData_  
+_(Sistem Informasi Data Warga)_
 
----
+<br>
 
- <p align="center"><a href="https://laravel.com" target="_blank"><img src="WhatsApp Image 2025-05-04 at 11.31.09 PM.jpeg" width="400" alt="unsulbar Logo"></a></p>
+<img src="unsulbar.png" alt="Logo Kampus" width="100">
 
-## 👤 Disusun oleh
+<br></br>
 
-**Silfi Kurnia**  
-**NIM: D0223016**
+_Silfi kurnia_  
+_D0223016_
 
-## 📚 Mata Kuliah
+<br>
 
-Framework Web Based
+_Framework Web Based_  
+_2025_
 
-## 🗓️ Tahun
-
-2025
-
----
+</div>
 
 ## 🧭 Deskripsi Proyek
 
@@ -67,14 +65,14 @@ Framework Web Based
 
 ### Tabel `petugas`
 
-| Nama Field | Tipe Data     | Keterangan          |
-| ---------- | ------------- | ------------------- |
-| id         | bigIncrements | Primary key         |
-| user_id    | foreignId     | FK ke tabel users   |
-| nip        | string        | Nomor Induk Petugas |
-| jabatan    | string        | Jabatan             |
-| wilayah    | string        | Wilayah kerja       |
-| timestamps | timestamps    |                     |
+| Nama Field | Tipe Data     | Keterangan              |
+| ---------- | ------------- | ----------------------- |
+| id         | bigIncrements | Primary key             |
+| user_id    | foreignId     | FK ke tabel users       |
+| nip        | string        | Nomor Induk Petugas     |
+| jabatan    | string        | Jabatan                 |
+| wilayah    | string        | Wilayah kerja           |
+| timestamps | timestamps    | Created_at & updated_at |
 
 ---
 
@@ -92,7 +90,7 @@ Framework Web Based
 | kecamatan     | string        | Nama kecamatan           |
 | tanggal_lahir | date          | Tanggal lahir            |
 | jenis_kelamin | enum          | ['L', 'P']               |
-| timestamps    | timestamps    |                          |
+| timestamps    | timestamps    | Created_at & updated_at  |
 
 ---
 
@@ -107,7 +105,7 @@ Framework Web Based
 | nilai_baru      | text          | Nilai setelah perubahan             |
 | status          | enum          | ['pending', 'disetujui', 'ditolak'] |
 | catatan_petugas | text          | Catatan dari petugas                |
-| timestamps      | timestamps    |                                     |
+| timestamps      | timestamps    | Created_at & updated_at             |
 
 ---
 
@@ -190,4 +188,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). --> -->
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
