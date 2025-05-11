@@ -6,16 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
-       // Tabel Users
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        // Tabel Users
+        Schema::create('pengguna', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
@@ -26,18 +21,17 @@ return new class extends Migration
 
         // Tabel Petugas
         Schema::create('petugas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('nip');
+            $table->id();
+            $table->foreignId('user_id')->constrained('pengguna')->onDelete('cascade');
+            $table->string('nip')->unique();
             $table->string('jabatan');
-            $table->string('wilayah');
             $table->timestamps();
         });
 
         // Tabel Warga
         Schema::create('warga', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('user_id')->constrained('pengguna')->onDelete('cascade');
             $table->string('nik')->unique();
             $table->string('kk');
             $table->string('alamat');
@@ -51,7 +45,7 @@ return new class extends Migration
 
         // Tabel Pengajuan Perubahan
         Schema::create('pengajuan_perubahan', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('warga_id')->constrained('warga')->onDelete('cascade');
             $table->string('field_diubah');
             $table->text('nilai_lama');
@@ -60,18 +54,33 @@ return new class extends Migration
             $table->text('catatan_petugas')->nullable();
             $table->timestamps();
         });
+
+        // Tabel Wilayah Tugas
+        Schema::create('wilayah_tugas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_wilayah');
+            $table->string('kecamatan');
+            $table->timestamps();
+        });
+
+        // Pivot: Petugas-Wilayah (many-to-many)
+        Schema::create('petugas_wilayah', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('petugas_id')->constrained('petugas')->onDelete('cascade');
+            $table->foreignId('wilayah_tugas_id')->constrained('wilayah_tugas')->onDelete('cascade');
+            $table->timestamps();
+
+            $table->unique(['petugas_id', 'wilayah_tugas_id']);
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
+        Schema::dropIfExists('petugas_wilayah');
+        Schema::dropIfExists('wilayah_tugas');
         Schema::dropIfExists('pengajuan_perubahan');
         Schema::dropIfExists('warga');
         Schema::dropIfExists('petugas');
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pengguna');
     }
 };
