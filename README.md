@@ -1,23 +1,20 @@
 <div align="center">
 
-_NusaData_  
-_(Sistem Informasi Data Warga)_
+# 🏝️ NusaData
 
-<br>
+_(Sistem Informasi Data Warga)_
 
 <img src="unsulbar.png" alt="Logo Kampus" width="100">
 
-<br></br>
-
-_Silfi kurnia_  
+**Silfi Kurnia**  
 _D0223016_
-
-<br>
 
 _Framework Web Based_  
 _2025_
 
 </div>
+
+---
 
 ## 🧭 Deskripsi Proyek
 
@@ -49,7 +46,7 @@ _2025_
 
 ## 🗃️ Tabel-tabel Database
 
-### Tabel `users`
+### 🔸 Tabel `users`
 
 | Nama Field     | Tipe Data     | Keterangan                    |
 | -------------- | ------------- | ----------------------------- |
@@ -63,7 +60,7 @@ _2025_
 
 ---
 
-### Tabel `petugas`
+### 🔸 Tabel `petugas`
 
 | Nama Field | Tipe Data     | Keterangan              |
 | ---------- | ------------- | ----------------------- |
@@ -71,12 +68,11 @@ _2025_
 | user_id    | foreignId     | FK ke tabel users       |
 | nip        | string        | Nomor Induk Petugas     |
 | jabatan    | string        | Jabatan                 |
-| wilayah    | string        | Wilayah kerja           |
 | timestamps | timestamps    | Created_at & updated_at |
 
 ---
 
-### Tabel `warga`
+### 🔸 Tabel `warga`
 
 | Nama Field    | Tipe Data     | Keterangan               |
 | ------------- | ------------- | ------------------------ |
@@ -85,7 +81,7 @@ _2025_
 | nik           | string        | Nomor Induk Kependudukan |
 | kk            | string        | Nomor Kartu Keluarga     |
 | alamat        | string        | Alamat lengkap           |
-| rt/rw         | string        | RT dan RW                |
+| rt_rw         | string        | RT dan RW                |
 | desa          | string        | Nama desa                |
 | kecamatan     | string        | Nama kecamatan           |
 | tanggal_lahir | date          | Tanggal lahir            |
@@ -94,7 +90,7 @@ _2025_
 
 ---
 
-### Tabel `pengajuan_perubahan`
+### 🔸 Tabel `pengajuan_perubahan`
 
 | Nama Field      | Tipe Data     | Keterangan                          |
 | --------------- | ------------- | ----------------------------------- |
@@ -109,17 +105,42 @@ _2025_
 
 ---
 
-## 🔗 Jenis Relasi dan Tabel yang Berelasi
+### 🔸 Tabel `wilayah_tugas`
 
--   `users` ↔ `petugas` = One to One
--   `users` ↔ `warga` = One to One
--   `warga` ↔ `pengajuan_perubahan` = One to Many
+| Nama Field   | Tipe Data     | Keterangan              |
+| ------------ | ------------- | ----------------------- |
+| id           | bigIncrements | Primary key             |
+| nama_wilayah | string        | Nama wilayah            |
+| kecamatan    | string        | Nama kecamatan          |
+| timestamps   | timestamps    | Created_at & updated_at |
+
+---
+
+### 🔸 Pivot Tabel `petugas_wilayah`
+
+| Nama Field       | Tipe Data     | Keterangan                |
+| ---------------- | ------------- | ------------------------- |
+| id               | bigIncrements | Primary key               |
+| petugas_id       | foreignId     | FK ke tabel petugas       |
+| wilayah_tugas_id | foreignId     | FK ke tabel wilayah_tugas |
+| timestamps       | timestamps    | Created_at & updated_at   |
+
+---
+
+## 🔗 Relasi Antar Tabel
+
+| Relasi                      | Jenis Relasi |
+| --------------------------- | ------------ |
+| users ↔ petugas             | One to One   |
+| users ↔ warga               | One to One   |
+| warga ↔ pengajuan_perubahan | One to Many  |
+| petugas ↔ wilayah_tugas     | Many to Many |
 
 ---
 
 ## ✅ Tujuan Sistem
 
-Mempermudah proses pencarian dan penggunaan data warga dalam layanan administratif di tingkat desa dan kecamatan tanpa memerlukan dokumen fisik yang banyak.
+Mempermudah proses pencarian dan penggunaan data warga dalam layanan administratif di tingkat desa dan kecamatan **tanpa memerlukan dokumen fisik yang banyak**.
 
 ---
 

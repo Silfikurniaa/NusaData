@@ -1,51 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-4">Daftar Pengguna</h1>
+    <div class="container">
+        <h1 class="mb-4">Tambah Pengguna</h1>
 
-    <a href="{{ route('pengguna.create') }}" class="btn btn-primary mb-3">Tambah Pengguna</a>
+        <form action="{{ route('pengguna.store') }}" method="POST">
+            @csrf
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+            <div class="mb-3">
+                <label for="name" class="form-label">Nama</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
 
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $pengguna)
-                <tr>
-                    <td>{{ $pengguna->id }}</td>
-                    <td>{{ $pengguna->name }}</td>
-                    <td>{{ $pengguna->email }}</td>
-                    <td>{{ ucfirst($pengguna->role) }}</td>
-                    <td>
-                        <a href="{{ route('pengguna.show', $pengguna->id) }}" class="btn btn-info btn-sm">Lihat</a>
-                        <a href="{{ route('pengguna.edit', $pengguna->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('pengguna.destroy', $pengguna->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
 
-            @if($data->isEmpty())
-                <tr>
-                    <td colspan="5" class="text-center">Tidak ada data pengguna.</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
-</div>
+
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select name="role" class="form-control" required>
+                    <option value="admin">Admin</option>
+                    <option value="petugas">Petugas</option>
+                    <option value="warga">Warga</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Simpan</button>
+            <a href="{{ route('pengguna.index') }}" class="btn btn-secondary">Batal</a>
+        </form>
+    </div>
 @endsection
