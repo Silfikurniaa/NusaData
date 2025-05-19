@@ -15,19 +15,16 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+// Halaman utama (home)
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
+// Resource pengguna (CRUD)
 Route::resource('pengguna', PenggunaController::class);
-Route::get('/pengguna/{pengguna}/edit', [PenggunaController::class, 'edit'])->name('pengguna.edit');
 
-
+// Route login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Jika ingin halaman utama dilindungi, bisa pakai middleware auth:
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
 
