@@ -12,8 +12,8 @@ class PenggunaSeeder extends Seeder
         // Admin
         pengguna::create([
             'name' => 'Admin NusaData',
-            'email' => 'admin@nusa.com',
-            'password' => bcrypt('password'),
+            'email' => 'vhiisilfi@gmail.com',
+            'password' => bcrypt('123456'),
             'role' => 'admin',
         ]);
 
