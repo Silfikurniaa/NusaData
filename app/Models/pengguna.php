@@ -9,7 +9,7 @@ class Pengguna extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'pengguna';
+    protected $table = 'users';
 
     protected $fillable = [
         'name', 'email', 'password', 'role',

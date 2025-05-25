@@ -1,4 +1,4 @@
-@extends('layouts.app') {{-- diasumsikan file layout di atas bernama layouts/app.blade.php --}}
+@extends('master.master') {{-- diasumsikan file layout di atas bernama layouts/app.blade.php --}}
 
 @section('title', 'Login')
 
